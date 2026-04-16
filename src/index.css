@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 229 25% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 229 25% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 229 25% 9%;
+    --primary: 228 83% 51%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 229 25% 9%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 16% 96%;
+    --muted-foreground: 228 8% 45%;
+    --accent: 220 16% 96%;
+    --accent-foreground: 229 25% 9%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 228 15% 90%;
+    --input: 228 15% 90%;
+    --ring: 228 83% 51%;
+    --radius: 0.375rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-brand-paper text-brand-ink font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tightest;
+  }
+  ::selection {
+    background: #FFD400;
+    color: #0A0A0A;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8 xl:px-12;
+  }
+
+  /* Buttons — sharp corners, industrial confidence */
+  .btn-yellow {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-yellow px-6 py-3 text-sm font-bold uppercase tracking-wide text-brand-black transition hover:bg-brand-yellowDark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-yellow focus-visible:ring-offset-2;
+  }
+  .btn-blue {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-blue px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-brand-blueLight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2;
+  }
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-black px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:bg-brand-ink;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border-2 border-white/25 bg-transparent px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition hover:border-white/50 hover:bg-white/10;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-brand-ink transition hover:bg-brand-grayLight;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full bg-brand-blueTint px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-brand-blue;
+  }
+  .eyebrow-dark {
+    @apply inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-brand-yellow;
+  }
+
+  /* Display headlines — sans UPPERCASE, huge, industrial */
+  .display-hero {
+    @apply font-display font-bold uppercase leading-[0.92];
+    font-size: clamp(3rem, 9vw, 7.5rem);
+    letter-spacing: -0.045em;
+  }
+  .display-xl {
+    @apply font-display font-bold uppercase leading-[0.95];
+    font-size: clamp(2.25rem, 5.5vw, 4.5rem);
+    letter-spacing: -0.04em;
+  }
+  .display-lg {
+    @apply font-display font-bold uppercase leading-[0.98];
+    font-size: clamp(1.875rem, 4vw, 3.25rem);
+    letter-spacing: -0.035em;
+  }
+
+  .section-pad {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+  .section-pad-sm {
+    @apply py-10 sm:py-12 lg:py-14;
+  }
+
+  /* Sharp panels */
+  .panel-blue {
+    @apply rounded-2xl bg-brand-blueDeep text-white shadow-bluepanel;
+  }
+  .panel-dark {
+    @apply rounded-2xl bg-brand-black text-white;
+  }
+
+  /* Pattern backgrounds */
+  .bg-diagonal-stripe {
+    background-image: linear-gradient(135deg, rgba(255,212,0,0.08) 0 1px, transparent 1px 18px);
+  }
+
+  /* Grain overlay */
+  .grain {
+    position: relative;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.25;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
