@@ -9,7 +9,7 @@ export function PromoPanel() {
   return (
     <section className="section-pad-sm bg-brand-grayLight">
       <div className="container-x">
-        <div className="relative overflow-hidden rounded-lg bg-brand-blue text-white shadow-bluepanel">
+        <div className="relative overflow-hidden clip-sharp bg-brand-blue text-white shadow-bluepanel">
           <IsometricGrid opacity={0.12} />
           <YellowPipeSquiggle />
           <div

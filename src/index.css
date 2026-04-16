@@ -114,6 +114,16 @@
     background-image: linear-gradient(135deg, rgba(255,212,0,0.08) 0 1px, transparent 1px 18px);
   }
 
+  /* Sharp triangular corner cutouts — the PlumbMate signature */
+  .clip-sharp {
+    clip-path: polygon(
+      0 28px, 28px 0,
+      calc(100% - 28px) 0, 100% 28px,
+      100% calc(100% - 28px), calc(100% - 28px) 100%,
+      28px 100%, 0 calc(100% - 28px)
+    );
+  }
+
   /* Grain overlay */
   .grain {
     position: relative;

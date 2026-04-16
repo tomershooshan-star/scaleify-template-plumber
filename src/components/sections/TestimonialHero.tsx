@@ -7,7 +7,7 @@ export function TestimonialHero() {
   return (
     <section className="section-pad-sm">
       <div className="container-x">
-        <div className="relative overflow-hidden rounded-lg bg-brand-blue py-16 sm:py-20 lg:py-24">
+        <div className="relative overflow-hidden clip-sharp bg-brand-blue py-16 sm:py-20 lg:py-24">
           <TopoLines opacity={0.15} />
           <ConcentricRings opacity={0.12} />
           {/* HUGE outlined ghost text behind */}

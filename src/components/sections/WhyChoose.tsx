@@ -6,12 +6,15 @@ const iconMap: Record<string, LucideIcon> = {
   Award, BadgeDollarSign, Timer, ShieldCheck, Sparkles, Truck,
 };
 
+// Curated, verified Unsplash IDs (common trade/tools images that reliably render)
 const imgs = [
   "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=85",
-  "https://images.unsplash.com/photo-1581092795442-66f3e73c8b44?auto=format&fit=crop&w=900&q=85",
-  "https://images.unsplash.com/photo-1585128792020-803d29415281?auto=format&fit=crop&w=900&q=85",
   "https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1585128792020-803d29415281?auto=format&fit=crop&w=900&q=85",
+  "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?auto=format&fit=crop&w=900&q=85",
 ];
+
+const FALLBACK = "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=85";
 
 export function WhyChoose() {
   const list = whyChoose.slice(0, 4);
@@ -20,7 +23,12 @@ export function WhyChoose() {
       <div className="container-x">
         <div className="mx-auto max-w-3xl text-center">
           <span className="eyebrow">Why Choose Us</span>
-          <h2 className="mt-5 display-xl text-brand-ink">The Plumbers You Call Twice</h2>
+          <h2 className="mt-5 display-xl text-brand-ink">
+            Built On Trust. Backed By Warranty.
+          </h2>
+          <p className="mx-auto mt-5 max-w-xl font-sans text-[15px] leading-relaxed text-brand-gray">
+            Four reasons homeowners keep our number saved — and pass it to their neighbors.
+          </p>
         </div>
 
         <div className="mt-16 grid gap-10 lg:grid-cols-2 lg:gap-12">
@@ -36,6 +44,7 @@ export function WhyChoose() {
 function WhyRow({ item, i }: { item: (typeof whyChoose)[number]; i: number }) {
   const { ref, inView } = useReveal<HTMLElement>(0.15);
   const Icon = iconMap[item.icon] ?? Award;
+  const img = imgs[i % imgs.length];
   return (
     <article
       ref={ref as React.RefObject<HTMLElement>}
@@ -58,8 +67,17 @@ function WhyRow({ item, i }: { item: (typeof whyChoose)[number]; i: number }) {
           {item.desc}
         </p>
       </div>
-      <div className={`hidden aspect-[4/5] w-full overflow-hidden rounded-lg bg-white sm:block ${i % 2 ? "sm:order-1" : ""}`}>
-        <img src={imgs[i % imgs.length]} alt="" className="h-full w-full object-cover" loading="lazy" />
+      <div className={`aspect-[4/5] w-full overflow-hidden rounded-md bg-brand-grayLight ${i % 2 ? "sm:order-1" : ""}`}>
+        <img
+          src={img}
+          alt=""
+          className="h-full w-full object-cover"
+          loading="lazy"
+          onError={(e) => {
+            const el = e.currentTarget as HTMLImageElement;
+            if (el.src !== FALLBACK) el.src = FALLBACK;
+          }}
+        />
       </div>
     </article>
   );

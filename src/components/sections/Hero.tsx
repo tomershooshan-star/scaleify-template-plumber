@@ -30,17 +30,52 @@ export function Hero() {
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-brand-blueDeep text-white flex flex-col">
-      {/* Animated diagonal stripe layer (slides) */}
-      <div
+      {/* Unique animated BG — concentric water ripples expanding from bottom-right */}
+      <svg
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.08]"
-        style={{
-          backgroundImage:
-            "linear-gradient(135deg, #FFD400 0 1px, transparent 1px 18px)",
-          backgroundSize: "200% 200%",
-          animation: "stripeSlide 28s linear infinite",
-        }}
-      />
+        className="pointer-events-none absolute inset-0 h-full w-full opacity-[0.13]"
+        viewBox="0 0 1600 1000"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        <defs>
+          <radialGradient id="heroRipple" cx="85%" cy="88%" r="65%">
+            <stop offset="0%" stopColor="#FFD400" stopOpacity="0" />
+            <stop offset="100%" stopColor="#FFD400" stopOpacity="0.6" />
+          </radialGradient>
+        </defs>
+        {/* Ripple rings */}
+        {Array.from({ length: 14 }).map((_, i) => (
+          <circle
+            key={i}
+            cx="1360"
+            cy="880"
+            r={120 + i * 90}
+            fill="none"
+            stroke="white"
+            strokeWidth="1"
+            style={{
+              animation: `rippleExpand 8s ease-in-out ${i * 0.4}s infinite`,
+              transformOrigin: "1360px 880px",
+            }}
+          />
+        ))}
+        {/* Isometric triangle lines top-left */}
+        <g opacity="0.6">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <line
+              key={i}
+              x1={-100 + i * 60}
+              y1="0"
+              x2={400 + i * 60}
+              y2="500"
+              stroke="white"
+              strokeWidth="0.5"
+              opacity="0.4"
+            />
+          ))}
+        </g>
+      </svg>
+
       {/* Radial yellow glow bottom-right */}
       <div
         aria-hidden
@@ -55,10 +90,6 @@ export function Hero() {
       />
       {/* Inline keyframes */}
       <style>{`
-        @keyframes stripeSlide {
-          0% { background-position: 0% 0%; }
-          100% { background-position: 100% 100%; }
-        }
         @keyframes floatY {
           0%, 100% { transform: translateY(0); }
           50% { transform: translateY(-6px); }
@@ -66,6 +97,11 @@ export function Hero() {
         @keyframes shimmer {
           0% { background-position: -200% center; }
           100% { background-position: 200% center; }
+        }
+        @keyframes rippleExpand {
+          0% { stroke-opacity: 0.08; transform: scale(0.8); }
+          50% { stroke-opacity: 0.35; }
+          100% { stroke-opacity: 0.08; transform: scale(1.15); }
         }
       `}</style>
 

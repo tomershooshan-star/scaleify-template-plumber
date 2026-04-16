@@ -36,7 +36,7 @@ export function ContactForm() {
     <section id="contact" className="section-pad-sm">
       <div className="container-x">
         {/* Top call-to-action panel — blue */}
-        <div className="relative overflow-hidden rounded-lg bg-brand-blueDeep px-8 py-14 text-white sm:px-14 sm:py-16 lg:px-20 lg:py-20">
+        <div className="relative overflow-hidden clip-sharp bg-brand-blueDeep px-8 py-14 text-white sm:px-14 sm:py-16 lg:px-20 lg:py-20">
           <BlueprintGrid opacity={0.09} />
           <div
             aria-hidden
