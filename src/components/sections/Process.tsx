@@ -1,14 +1,13 @@
 import { process as steps } from "@/config/site";
+import { DotGrid, BlueprintGrid } from "@/components/ui/Patterns";
 
 export function Process() {
   return (
     <section id="process" className="section-pad-sm bg-brand-grayLight">
       <div className="container-x">
-        <div className="relative overflow-hidden rounded-2xl bg-brand-blueDeep p-8 sm:p-12 lg:p-16">
-          <div
-            aria-hidden
-            className="absolute inset-0 opacity-[0.08] bg-diagonal-stripe pointer-events-none"
-          />
+        <div className="relative overflow-hidden rounded-lg bg-brand-blueDeep p-8 sm:p-12 lg:p-16">
+          <BlueprintGrid opacity={0.08} />
+          <DotGrid opacity={0.12} size={22} />
           <div className="relative mx-auto max-w-2xl text-center">
             <span className="eyebrow-dark">Simple Process</span>
             <h2 className="mt-5 display-xl text-white">Book Your Service</h2>
@@ -31,7 +30,7 @@ export function Process() {
                 >
                   {/* Card */}
                   <div
-                    className={`rounded-xl bg-brand-blue p-5 text-white md:p-6 ${
+                    className={`rounded-md bg-brand-blue p-5 text-white md:p-6 ${
                       i % 2 ? "md:text-left" : "md:text-right"
                     }`}
                   >

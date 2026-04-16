@@ -1,5 +1,6 @@
 import { whyChoose } from "@/config/site";
 import { Award, BadgeDollarSign, Timer, ShieldCheck, Sparkles, Truck, type LucideIcon } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
 
 const iconMap: Record<string, LucideIcon> = {
   Award, BadgeDollarSign, Timer, ShieldCheck, Sparkles, Truck,
@@ -23,35 +24,44 @@ export function WhyChoose() {
         </div>
 
         <div className="mt-16 grid gap-10 lg:grid-cols-2 lg:gap-12">
-          {list.map((item, i) => {
-            const Icon = iconMap[item.icon] ?? Award;
-            return (
-              <article
-                key={item.title}
-                className="grid grid-cols-1 items-center gap-6 sm:grid-cols-[1fr_1fr] sm:gap-8"
-              >
-                <div className={`${i % 2 ? "sm:order-2" : ""}`}>
-                  <div className="mb-5 inline-flex">
-                    <HexIcon>
-                      <Icon className="h-6 w-6" strokeWidth={2.2} />
-                    </HexIcon>
-                  </div>
-                  <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-brand-ink">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 max-w-sm font-sans text-[15px] leading-relaxed text-brand-gray">
-                    {item.desc}
-                  </p>
-                </div>
-                <div className={`hidden aspect-[4/5] w-full overflow-hidden rounded-2xl bg-white sm:block ${i % 2 ? "sm:order-1" : ""}`}>
-                  <img src={imgs[i % imgs.length]} alt="" className="h-full w-full object-cover" loading="lazy" />
-                </div>
-              </article>
-            );
-          })}
+          {list.map((item, i) => (
+            <WhyRow key={item.title} item={item} i={i} />
+          ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function WhyRow({ item, i }: { item: (typeof whyChoose)[number]; i: number }) {
+  const { ref, inView } = useReveal<HTMLElement>(0.15);
+  const Icon = iconMap[item.icon] ?? Award;
+  return (
+    <article
+      ref={ref as React.RefObject<HTMLElement>}
+      className="grid grid-cols-1 items-center gap-6 transition-all duration-700 ease-out sm:grid-cols-[1fr_1fr] sm:gap-8"
+      style={{
+        opacity: inView ? 1 : 0,
+        transform: inView ? "translateY(0)" : `translateY(${i % 2 === 0 ? 40 : -40}px)`,
+      }}
+    >
+      <div className={`${i % 2 ? "sm:order-2" : ""}`}>
+        <div className="mb-5 inline-flex">
+          <HexIcon>
+            <Icon className="h-6 w-6" strokeWidth={2.2} />
+          </HexIcon>
+        </div>
+        <h3 className="font-display text-2xl font-bold uppercase tracking-tight text-brand-ink">
+          {item.title}
+        </h3>
+        <p className="mt-3 max-w-sm font-sans text-[15px] leading-relaxed text-brand-gray">
+          {item.desc}
+        </p>
+      </div>
+      <div className={`hidden aspect-[4/5] w-full overflow-hidden rounded-lg bg-white sm:block ${i % 2 ? "sm:order-1" : ""}`}>
+        <img src={imgs[i % imgs.length]} alt="" className="h-full w-full object-cover" loading="lazy" />
+      </div>
+    </article>
   );
 }
 

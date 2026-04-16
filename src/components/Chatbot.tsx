@@ -34,7 +34,7 @@ export function Chatbot() {
       </button>
 
       {open && (
-        <div className="fixed bottom-24 right-6 z-50 flex h-[32rem] w-[22rem] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-xl border border-brand-ink/10 bg-white shadow-soft">
+        <div className="fixed bottom-24 right-6 z-50 flex h-[32rem] w-[22rem] max-w-[calc(100vw-3rem)] flex-col overflow-hidden rounded-md border border-brand-ink/10 bg-white shadow-soft">
           <div className="flex items-center justify-between bg-brand-blueDeep px-4 py-3 text-white">
             <div className="flex items-center gap-2">
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-yellow text-brand-black">
@@ -54,7 +54,7 @@ export function Chatbot() {
           <div className="flex-1 space-y-3 overflow-y-auto bg-brand-grayLight/60 px-4 py-4 font-sans text-sm">
             {msgs.map((m, i) => (
               <div key={i} className={m.from === "bot" ? "flex justify-start" : "flex justify-end"}>
-                <div className={m.from === "bot" ? "max-w-[85%] rounded-xl rounded-bl-sm bg-white px-3 py-2 text-brand-ink shadow-sm" : "max-w-[85%] rounded-xl rounded-br-sm bg-brand-blue px-3 py-2 text-white"}>
+                <div className={m.from === "bot" ? "max-w-[85%] rounded-md rounded-bl-sm bg-white px-3 py-2 text-brand-ink shadow-sm" : "max-w-[85%] rounded-md rounded-br-sm bg-brand-blue px-3 py-2 text-white"}>
                   {m.text}
                 </div>
               </div>

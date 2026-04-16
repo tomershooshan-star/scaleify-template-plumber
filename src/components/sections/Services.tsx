@@ -26,10 +26,10 @@ export function Services() {
             return (
               <article
                 key={s.title}
-                className="group relative overflow-hidden rounded-2xl border border-brand-ink/5 bg-white p-7 transition hover:-translate-y-1 hover:border-brand-blue/20 hover:shadow-card"
+                className="group relative overflow-hidden rounded-lg border border-brand-ink/5 bg-white p-7 transition hover:-translate-y-1 hover:border-brand-blue/20 hover:shadow-card"
               >
                 {/* Icon medallion */}
-                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-brand-blueTint text-brand-blue transition group-hover:bg-brand-blue group-hover:text-white">
+                <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-md bg-brand-blueTint text-brand-blue transition group-hover:bg-brand-blue group-hover:text-white">
                   <Icon className="h-6 w-6" strokeWidth={2.2} />
                 </div>
                 <h3 className="font-display text-xl font-bold uppercase tracking-tight text-brand-ink">

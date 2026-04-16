@@ -6,7 +6,7 @@ export function BlackStats() {
   return (
     <section className="section-pad-sm">
       <div className="container-x">
-        <div className="relative overflow-hidden rounded-2xl bg-brand-black p-10 text-white sm:p-14 lg:p-16">
+        <div className="relative overflow-hidden rounded-lg bg-brand-black p-10 text-white sm:p-14 lg:p-16">
           <div className="text-center">
             <h2 className="display-xl text-white">Results You Can Trust</h2>
             <p className="mx-auto mt-4 max-w-xl font-sans text-sm text-white/60">

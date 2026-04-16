@@ -1,6 +1,7 @@
 import { Phone, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { site } from "@/config/site";
+import { IsometricGrid, YellowPipeSquiggle } from "@/components/ui/Patterns";
 
 const bullets = ["Leaks. Mess. Frustration.", "Fixed Fast. Done Right."];
 
@@ -8,21 +9,17 @@ export function PromoPanel() {
   return (
     <section className="section-pad-sm bg-brand-grayLight">
       <div className="container-x">
-        <div className="relative overflow-hidden rounded-2xl bg-brand-blueDeep text-white shadow-bluepanel">
-          {/* Diagonal stripes overlay */}
+        <div className="relative overflow-hidden rounded-lg bg-brand-blue text-white shadow-bluepanel">
+          <IsometricGrid opacity={0.12} />
+          <YellowPipeSquiggle />
           <div
             aria-hidden
-            className="absolute inset-0 opacity-[0.08] bg-diagonal-stripe pointer-events-none"
-          />
-          {/* Yellow shape behind photo */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -right-20 -top-20 h-[28rem] w-[28rem] rounded-full bg-brand-yellow/25 blur-3xl"
+            className="pointer-events-none absolute -right-20 -top-20 h-[28rem] w-[28rem] rounded-full bg-brand-yellow/20 blur-3xl"
           />
           {/* Small yellow chip */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -bottom-8 right-4 hidden h-28 w-28 rotate-12 rounded-2xl bg-brand-yellow/90 lg:block"
+            className="pointer-events-none absolute -bottom-8 right-4 hidden h-28 w-28 rotate-12 rounded-lg bg-brand-yellow/90 lg:block"
           />
 
           <div className="relative grid gap-10 p-8 sm:p-12 lg:grid-cols-[1.2fr_1fr] lg:p-16">
@@ -59,7 +56,7 @@ export function PromoPanel() {
             </div>
 
             <div className="relative flex items-end justify-center">
-              <div className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl">
+              <div className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-lg">
                 <img
                   src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=800&q=85"
                   alt="Plumber"

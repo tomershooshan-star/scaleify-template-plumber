@@ -20,20 +20,20 @@ export function WorkGallery() {
         </div>
 
         <div className="mt-14 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
-          {images.map((src, i) => (
+          {images.map((src) => (
             <div
               key={src}
-              className={`overflow-hidden rounded-xl bg-brand-grayLight ${
-                i === 0 || i === 4 ? "sm:row-span-2 sm:col-span-1" : ""
-              }`}
+              className="overflow-hidden rounded-md bg-brand-grayLight group"
             >
               <img
                 src={src}
                 alt=""
                 loading="lazy"
-                className={`h-full w-full object-cover transition duration-700 hover:scale-[1.04] ${
-                  i === 0 || i === 4 ? "sm:h-[32rem]" : "sm:h-60"
-                }`}
+                className="h-56 w-full object-cover transition duration-700 group-hover:scale-[1.04] sm:h-64 lg:h-72"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src =
+                    "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=85";
+                }}
               />
             </div>
           ))}

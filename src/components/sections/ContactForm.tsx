@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { Phone, Mail, MapPin, Clock, Loader2, Check, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { site } from "@/config/site";
+import { BlueprintGrid } from "@/components/ui/Patterns";
 
 const WEBHOOK = import.meta.env.VITE_CONTACT_WEBHOOK as string | undefined;
 
@@ -35,8 +36,8 @@ export function ContactForm() {
     <section id="contact" className="section-pad-sm">
       <div className="container-x">
         {/* Top call-to-action panel — blue */}
-        <div className="relative overflow-hidden rounded-2xl bg-brand-blueDeep px-8 py-14 text-white sm:px-14 sm:py-16 lg:px-20 lg:py-20">
-          <div aria-hidden className="absolute inset-0 opacity-[0.08] bg-diagonal-stripe pointer-events-none" />
+        <div className="relative overflow-hidden rounded-lg bg-brand-blueDeep px-8 py-14 text-white sm:px-14 sm:py-16 lg:px-20 lg:py-20">
+          <BlueprintGrid opacity={0.09} />
           <div
             aria-hidden
             className="pointer-events-none absolute -bottom-32 -left-24 h-[30rem] w-[30rem] rounded-full opacity-40 blur-3xl"
@@ -77,7 +78,7 @@ export function ContactForm() {
               Tell us what's going on and we'll call back within 15 minutes during business hours.
             </p>
 
-            <div className="relative mt-8 aspect-[5/3] w-full overflow-hidden rounded-xl">
+            <div className="relative mt-8 aspect-[5/3] w-full overflow-hidden rounded-md">
               <img
                 src="https://images.unsplash.com/photo-1585128792020-803d29415281?auto=format&fit=crop&w=1200&q=85"
                 alt=""
@@ -105,7 +106,7 @@ export function ContactForm() {
             </dl>
           </div>
 
-          <form onSubmit={onSubmit} className="rounded-xl border border-brand-ink/10 bg-white p-8 shadow-card lg:p-10">
+          <form onSubmit={onSubmit} className="rounded-md border border-brand-ink/10 bg-white p-8 shadow-card lg:p-10">
             <div className="grid gap-5 sm:grid-cols-2">
               <Field label="Your Name" name="name" required placeholder="Jane Smith" />
               <Field label="Phone" name="phone" type="tel" required placeholder="(555) 000-0000" />

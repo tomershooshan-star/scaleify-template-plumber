@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Phone, ShieldCheck, Clock, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/Button";
@@ -11,18 +12,64 @@ const navLinks = [
 ];
 
 export function Hero() {
-  return (
-    <section className="relative overflow-hidden bg-brand-blueDeep text-white">
-      <div
-        aria-hidden
-        className="absolute inset-0 opacity-[0.08] bg-diagonal-stripe pointer-events-none"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-40 -right-24 h-[40rem] w-[40rem] rounded-full opacity-30 blur-3xl"
-        style={{ background: "radial-gradient(circle, #FFD400 0%, transparent 65%)" }}
-      />
+  const photoRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
 
+  useEffect(() => {
+    setMounted(true);
+    // Mouse-move parallax for photo
+    const onMove = (e: MouseEvent) => {
+      if (!photoRef.current) return;
+      const x = (e.clientX / window.innerWidth - 0.5) * 12;
+      const y = (e.clientY / window.innerHeight - 0.5) * 12;
+      photoRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
+  }, []);
+
+  return (
+    <section className="relative min-h-screen overflow-hidden bg-brand-blueDeep text-white flex flex-col">
+      {/* Animated diagonal stripe layer (slides) */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage:
+            "linear-gradient(135deg, #FFD400 0 1px, transparent 1px 18px)",
+          backgroundSize: "200% 200%",
+          animation: "stripeSlide 28s linear infinite",
+        }}
+      />
+      {/* Radial yellow glow bottom-right */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-40 -right-40 h-[48rem] w-[48rem] rounded-full opacity-35 blur-3xl"
+        style={{ background: "radial-gradient(circle, #FFD400 0%, transparent 60%)" }}
+      />
+      {/* Second radial — blue depth top-left */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-40 -left-40 h-[40rem] w-[40rem] rounded-full opacity-50 blur-3xl"
+        style={{ background: "radial-gradient(circle, #1E40E8 0%, transparent 60%)" }}
+      />
+      {/* Inline keyframes */}
+      <style>{`
+        @keyframes stripeSlide {
+          0% { background-position: 0% 0%; }
+          100% { background-position: 100% 100%; }
+        }
+        @keyframes floatY {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
+        }
+        @keyframes shimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+      `}</style>
+
+      {/* Nav */}
       <nav className="relative z-20 border-b border-white/10">
         <div className="container-x flex h-20 items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5 font-display text-xl font-extrabold uppercase tracking-tight text-white">
@@ -55,11 +102,18 @@ export function Hero() {
         </div>
       </nav>
 
-      <div className="relative">
-        <div className="container-x grid gap-12 py-16 sm:py-20 lg:grid-cols-[1.4fr_1fr] lg:gap-8 lg:py-24 lg:min-h-[calc(92vh-5rem)]">
-          <div className="relative z-10 flex flex-col justify-center">
+      {/* Body */}
+      <div className="relative flex flex-1 items-center">
+        <div className="container-x grid gap-12 py-12 sm:py-16 lg:grid-cols-[1.3fr_1fr] lg:gap-10 lg:py-20">
+          <div
+            className="relative z-10 flex flex-col justify-center transition-all duration-700"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? "translateY(0)" : "translateY(30px)",
+            }}
+          >
             <div className="mb-5 flex flex-wrap items-center gap-2">
-              <span className="rounded-full bg-brand-yellow px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-brand-black">
+              <span className="rounded-lg bg-brand-yellow px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-brand-black">
                 24/7 Emergency Service
               </span>
             </div>
@@ -67,7 +121,20 @@ export function Hero() {
             <h1 className="display-hero text-white">
               Plumbing
               <br />
-              <span className="text-brand-yellow">Solved.</span>
+              <span
+                className="relative inline-block text-brand-yellow"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg, #FFD400 0%, #FFF4AA 50%, #FFD400 100%)",
+                  backgroundSize: "200% 100%",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                  animation: "shimmer 4s linear infinite",
+                }}
+              >
+                Solved.
+              </span>
             </h1>
 
             <p className="mt-8 max-w-xl font-sans text-lg leading-relaxed text-white/70">
@@ -103,15 +170,26 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative flex items-end">
-            <div className="relative w-full overflow-hidden rounded-2xl shadow-soft">
+          {/* Right column — parallax plumber photo */}
+          <div
+            ref={photoRef}
+            className="relative flex items-center transition-transform duration-200 ease-out"
+            style={{
+              opacity: mounted ? 1 : 0,
+              transition: "transform 0.2s ease-out, opacity 0.9s ease-out",
+            }}
+          >
+            <div className="relative w-full overflow-hidden rounded-lg shadow-soft">
               <img
                 src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=85"
                 alt="Licensed plumber at work"
-                className="h-[360px] w-full object-cover sm:h-[440px] lg:h-[540px]"
+                className="h-[400px] w-full object-cover sm:h-[500px] lg:h-[580px]"
                 loading="eager"
               />
-              <div className="absolute right-4 top-4 rounded-xl bg-brand-yellow px-4 py-3 shadow-lg">
+              <div
+                className="absolute right-4 top-4 rounded-lg bg-brand-yellow px-4 py-3 shadow-lg"
+                style={{ animation: "floatY 4s ease-in-out infinite" }}
+              >
                 <div className="flex items-center gap-2">
                   <Star className="h-4 w-4 fill-brand-black text-brand-black" />
                   <div className="font-display text-lg font-black leading-none text-brand-black">

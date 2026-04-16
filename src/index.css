@@ -101,12 +101,12 @@
     @apply py-10 sm:py-12 lg:py-14;
   }
 
-  /* Sharp panels */
+  /* Sharp panels (rounded-lg, not pillowy) */
   .panel-blue {
-    @apply rounded-2xl bg-brand-blueDeep text-white shadow-bluepanel;
+    @apply rounded-lg bg-brand-blueDeep text-white shadow-bluepanel;
   }
   .panel-dark {
-    @apply rounded-2xl bg-brand-black text-white;
+    @apply rounded-lg bg-brand-black text-white;
   }
 
   /* Pattern backgrounds */

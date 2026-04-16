@@ -1,12 +1,15 @@
 import { Quote } from "lucide-react";
 import { testimonials } from "@/config/site";
+import { TopoLines, ConcentricRings } from "@/components/ui/Patterns";
 
 export function TestimonialHero() {
   const t = testimonials[0];
   return (
     <section className="section-pad-sm">
       <div className="container-x">
-        <div className="relative overflow-hidden rounded-2xl bg-brand-blue py-16 sm:py-20 lg:py-24">
+        <div className="relative overflow-hidden rounded-lg bg-brand-blue py-16 sm:py-20 lg:py-24">
+          <TopoLines opacity={0.15} />
+          <ConcentricRings opacity={0.12} />
           {/* HUGE outlined ghost text behind */}
           <div
             aria-hidden
@@ -43,7 +46,7 @@ export function TestimonialHero() {
             </div>
 
             <div className="relative z-10 flex items-end justify-center">
-              <div className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl">
+              <div className="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-lg">
                 <img
                   src="https://images.unsplash.com/photo-1585128792020-803d29415281?auto=format&fit=crop&w=800&q=85"
                   alt="Plumber on site"
