@@ -1,3 +1,4 @@
+import { UtilityBar } from "@/components/UtilityBar";
 import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
 import { PromoPanel } from "@/components/sections/PromoPanel";
@@ -16,6 +17,7 @@ export default function Home() {
   return (
     <>
       <SEO path="/" jsonLd={localBusinessJsonLd()} />
+      <UtilityBar />
       <main>
         <Hero />
         <Services />

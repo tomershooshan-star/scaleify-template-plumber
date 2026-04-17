@@ -6,6 +6,7 @@ import NotFound from "@/pages/NotFound";
 import { StickyNav } from "@/components/sections/StickyNav";
 import { CookieConsent } from "@/components/CookieConsent";
 import { Chatbot } from "@/components/Chatbot";
+import { FloatingQuote } from "@/components/FloatingQuote";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <FloatingQuote />
       <CookieConsent />
       <Chatbot />
     </>
