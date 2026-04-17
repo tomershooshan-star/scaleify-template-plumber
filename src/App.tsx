@@ -3,12 +3,14 @@ import Home from "@/pages/Home";
 import Privacy from "@/pages/Privacy";
 import Terms from "@/pages/Terms";
 import NotFound from "@/pages/NotFound";
+import { StickyNav } from "@/components/sections/StickyNav";
 import { CookieConsent } from "@/components/CookieConsent";
 import { Chatbot } from "@/components/Chatbot";
 
 export default function App() {
   return (
     <>
+      <StickyNav />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/privacy" element={<Privacy />} />
