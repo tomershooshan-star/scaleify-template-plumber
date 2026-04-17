@@ -24,13 +24,13 @@ export function StickyNav() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-brand-blueDeep/95 backdrop-blur-md shadow-lg"
-          : "bg-transparent"
+          ? "top-0 bg-brand-blueDeep/95 backdrop-blur-md shadow-lg"
+          : "top-[38px] bg-transparent"
       }`}
     >
-      <div className="container-x flex h-16 items-center justify-between sm:h-20">
+      <div className="container-x flex h-14 items-center justify-between sm:h-16">
         <Link
           to="/"
           className="flex items-center gap-2.5 font-display text-lg font-extrabold uppercase tracking-tight text-white sm:text-xl"

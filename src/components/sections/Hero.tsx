@@ -97,8 +97,8 @@ export function Hero() {
         }
       `}</style>
 
-      {/* Nav spacer — StickyNav is rendered globally in App.tsx */}
-      <div className="h-20" />
+      {/* Nav spacer — UtilityBar (38px) + StickyNav (64px) */}
+      <div className="h-[102px]" />
 
       {/* Body */}
       <div className="relative flex flex-1 items-center">
